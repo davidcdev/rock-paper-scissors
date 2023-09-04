@@ -54,3 +54,24 @@ function playRound (playerSelection, getComputersChoice) {
   alert(result);
   return result;
 }
+
+function game () {
+  playerName = prompt('Enter your name', 'Player');
+  alert(`Welcome ${playerName}!`);
+
+  for (let i = 0; i < 5; i++) {
+    playRound(playerSelection(), getComputersChoice());
+  }
+  
+  if (pcWins > playerWins) {
+    finalResult = 'You Lost! ❌';
+  } else if (pcWins < playerWins) {
+    finalResult = 'You Won! 🎉';
+  } else {
+    finalResult = 'Tie! 👀';
+  }
+  
+  alert(finalResult);
+}
+
+game();
