@@ -1,77 +1,64 @@
-const choices = ['rock', 'paper', 'scissors'];
-let playerName = '';
+const CHOICES = ['Rock', 'Paper', 'Scissors'];
+
+let playerName = prompt('What is your name?', 'Player');
+let welcome = alert(`Welcome ${playerName}! Let's play Rock, Paper, Scissors!`);
+
 let pcWins = 0;
 let playerWins = 0;
+
+let playerSelection = '';
+
 let result = '';
 let finalResult = '';
 
 function getComputersChoice () {
   const randomNumber = Math.floor(Math.random() * 3);
-  return choices[randomNumber];
+  return CHOICES[randomNumber];
 }
 
-function playerSelection () {
-  const playerChoice = prompt('Rock, Paper, or Scissors?').toLowerCase();
-  return playerChoice;
-}
+const buttons = document.querySelectorAll('.options');
 
-function playRound (playerSelection, getComputersChoice) {
-  if (playerSelection === getComputersChoice) result = 'Tie! 👀';
+buttons.forEach(button => 
+  button.addEventListener('click', () => {
+    playerSelection = button.id;
+    const computersChoice = getComputersChoice();
+    playRound(playerSelection, computersChoice);
+  })
+)
+
+function playRound (playerSelection, computersChoice) {
   
-  if (playerSelection === 'rock') {
-    if (getComputersChoice === 'paper') {
+  if (playerSelection !== '' && playerSelection === computersChoice) result = 'Tie! 👀';
+  
+  if (playerSelection === 'Rock') {
+    if (computersChoice === 'Paper') {
       pcWins += 1;
       result = 'You Lose! Paper beats Rock ❌'; 
-    } else if (getComputersChoice === 'scissors') {
+    } else if (computersChoice === 'Scissors') {
       playerWins += 1;
       result = 'You Win! Rock beats Scissors 👏'; 
     }
   }
-
-  if (playerSelection === 'paper') {
-    if (getComputersChoice === 'rock') {
+  
+  if (playerSelection === 'Paper') {
+    if (computersChoice === 'Rock') {
       playerWins += 1;
       result = 'You Win! Paper beats Rock 👏';
-    } else if (getComputersChoice === 'scissors') {
+    } else if (computersChoice === 'Scissors') {
       pcWins += 1;
       result = 'You Lose! Scissors beats Paper ❌';
     }
   }
-
-  if (playerSelection === 'scissors') {
-    if (getComputersChoice === 'rock') {
+  
+  if (playerSelection === 'Scissors') {
+    if (computersChoice === 'Rock') {
       pcWins += 1;
       result = 'You Lose! Rock beats Scissors ❌';
-    } else if (getComputersChoice === 'paper') {
+    } else if (computersChoice === 'Paper') {
       playerWins += 1;
       result = 'You Win! Scissors beats Paper 👏';
     }
   }
-
-  console.log(`Player selected ${playerSelection}`);
-  console.log(`Computer selected ${getComputersChoice}`);
-  console.log(`Score: Player: ${playerWins} - PC: ${pcWins}`);
-  alert(result);
+  
   return result;
-}
-
-function game () {
-  playerName = prompt('Enter your name', 'Player');
-  alert(`Welcome ${playerName}!`);
-
-  for (let i = 0; i < 5; i++) {
-    playRound(playerSelection(), getComputersChoice());
-  }
-  
-  if (pcWins > playerWins) {
-    finalResult = 'You Lost! ❌';
-  } else if (pcWins < playerWins) {
-    finalResult = 'You Won! 🎉';
-  } else {
-    finalResult = 'Tie! 👀';
-  }
-  
-  alert(finalResult);
-}
-
-game();
+};
