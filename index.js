@@ -14,7 +14,7 @@ let finalResult = '';
 function getComputersChoice () {
   const randomNumber = Math.floor(Math.random() * 3);
   return CHOICES[randomNumber];
-}
+};
 
 const buttons = document.querySelectorAll('.options');
 
@@ -24,7 +24,7 @@ buttons.forEach(button =>
     const computersChoice = getComputersChoice();
     playRound(playerSelection, computersChoice);
   })
-)
+);
 
 function playRound (playerSelection, computersChoice) {
   
@@ -37,8 +37,8 @@ function playRound (playerSelection, computersChoice) {
     } else if (computersChoice === 'Scissors') {
       playerWins += 1;
       result = 'You Win! Rock beats Scissors 👏'; 
-    }
-  }
+    };
+  };
   
   if (playerSelection === 'Paper') {
     if (computersChoice === 'Rock') {
@@ -47,8 +47,8 @@ function playRound (playerSelection, computersChoice) {
     } else if (computersChoice === 'Scissors') {
       pcWins += 1;
       result = 'You Lose! Scissors beats Paper ❌';
-    }
-  }
+    };
+  };
   
   if (playerSelection === 'Scissors') {
     if (computersChoice === 'Rock') {
@@ -57,14 +57,14 @@ function playRound (playerSelection, computersChoice) {
     } else if (computersChoice === 'Paper') {
       playerWins += 1;
       result = 'You Win! Scissors beats Paper 👏';
-    }
-  }
+    };
+  };
 
   const p1 = document.createElement('p');
-  p1.textContent = `${playerName} selected: ${playerSelection}.`
+  p1.textContent = `${playerName} selected: ${playerSelection}.`;
   
   const p2 = document.createElement('p');
-  p2.textContent = `Computer selected: ${computersChoice}.`
+  p2.textContent = `Computer selected: ${computersChoice}.`;
   
   const roundResult = document.createElement('h3');
   roundResult.textContent = result;
@@ -80,6 +80,22 @@ function playRound (playerSelection, computersChoice) {
   results.appendChild(score);
   
   document.body.appendChild(results);
+
+  if (pcWins === 5 || playerWins === 5) {
+    buttons.forEach(button => button.disabled = true);
+
+    if (pcWins > playerWins) {
+      finalResult = 'You Lost! ❌';
+    } else if (pcWins < playerWins) {
+      finalResult = 'You Won! 🏆';
+    } else {
+      finalResult = 'Tie! 👀';
+    };
+    
+    const winner = document.createElement('h1');
+    winner.textContent = finalResult;
+    document.body.appendChild(winner);
+  };
   
   return result;
 };
