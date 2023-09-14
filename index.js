@@ -59,6 +59,27 @@ function playRound (playerSelection, computersChoice) {
       result = 'You Win! Scissors beats Paper 👏';
     }
   }
+
+  const p1 = document.createElement('p');
+  p1.textContent = `${playerName} selected: ${playerSelection}.`
+  
+  const p2 = document.createElement('p');
+  p2.textContent = `Computer selected: ${computersChoice}.`
+  
+  const roundResult = document.createElement('h3');
+  roundResult.textContent = result;
+  
+  const score = document.createElement('p');
+  score.textContent = `Score: ${playerName}: ${playerWins} - PC: ${pcWins}`;
+  
+  const results = document.createElement('div');
+  
+  results.appendChild(p1);
+  results.appendChild(p2);
+  results.appendChild(roundResult);
+  results.appendChild(score);
+  
+  document.body.appendChild(results);
   
   return result;
 };
