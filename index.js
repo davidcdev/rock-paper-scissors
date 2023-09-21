@@ -26,6 +26,8 @@ buttons.forEach(button =>
   })
 );
 
+const section = document.querySelector('section');
+
 function playRound (playerSelection, computersChoice) {
   
   if (playerSelection !== '' && playerSelection === computersChoice) result = 'Tie! 👀';
@@ -70,9 +72,11 @@ function playRound (playerSelection, computersChoice) {
   roundResult.textContent = result;
   
   const score = document.createElement('p');
+  score.classList.add('score');
   score.textContent = `Score: ${playerName}: ${playerWins} - PC: ${pcWins}`;
   
   const results = document.createElement('div');
+  results.classList.add('history');
   
   results.appendChild(p1);
   results.appendChild(p2);
@@ -92,9 +96,9 @@ function playRound (playerSelection, computersChoice) {
       finalResult = 'Tie! 👀';
     };
     
-    const winner = document.createElement('h1');
+    const winner = document.createElement('span');
     winner.textContent = finalResult;
-    document.body.appendChild(winner);
+    section.appendChild(winner);
   };
   
   return result;
