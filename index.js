@@ -99,6 +99,14 @@ function playRound (playerSelection, computersChoice) {
     const winner = document.createElement('span');
     winner.textContent = finalResult;
     section.appendChild(winner);
+
+    const playAgain = document.createElement('button');
+    playAgain.textContent = 'Play Again?';
+    section.appendChild(playAgain);
+    
+    playAgain.addEventListener('click', () => {
+      location.reload();
+    });
   };
   
   return result;

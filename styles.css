@@ -34,8 +34,7 @@ p {
 .options-container {
   width: 80%;
   max-width: 600px;
-  height: 200px;
-  max-height: 400px;
+  max-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
